@@ -1,0 +1,13 @@
+Round = A B C
+
+A:	A.cpp
+	g++ -o A A.cpp -std=c++17 -O3
+
+B:	B.cpp
+	g++ -o A A.cpp -std=c++17 -O3
+
+C:	C.cpp
+	g++ -o A A.cpp -std=c++17 -O3
+
+clean:
+	rm -rf A B C
