@@ -32,29 +32,43 @@ inline void quickread() {
     cin.tie(nullptr);
 }
 
-int a[100010];
-int n, x;
+int trie[3000010][26], cnt[3000010];
+int N, K, tcnt = 0;
+int ans = 0;
+string st;
+
+void dfs(int x) {
+    if (!x) {
+        return;
+    }
+    ans += cnt[x] / K;
+    for (int i = 0; i < 26; ++i) {
+        dfs(trie[x][i]);
+    }
+}
 
 inline void work() {
-    cin >> n >> x;
-    for (int i = 0; i < n; ++i) {
-        cin >> a[i];
-    }
-    sort(a, a + n);
-    
-    int sum = 0;
-    for (int i = 0; i < n; ++i) {
-        sum += a[i];
-        if (sum > x) {
-            cout << i << "\n";
-            return;
+    cin >> N >> K;
+    int root = ++tcnt;
+    for (int i = 0; i < N; ++i) {
+        cin >> st;
+        int node = root;
+        for (char ch: st) {
+            if (!trie[node][ch - 65]) {
+                trie[node][ch - 65] = ++tcnt;
+            }
+            node = trie[node][ch - 65];
+            ++cnt[node];
         }
     }
-    cout << n << "\n";
+
+    ans = 0;
+    dfs(root);
+    cout << ans << "\n";
 }
 
 int main() {
-    // freopen("A.txt", "r", stdin);
+    // freopen("D.txt", "r", stdin);
     quickread();
     int T;
     cin >> T;

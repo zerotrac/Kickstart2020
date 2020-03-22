@@ -32,10 +32,18 @@ inline void quickread() {
     cin.tie(nullptr);
 }
 
+inline void work() {
+
+}
+
 int main() {
     // freopen(".txt", "r", stdin);
     quickread();
-   
-    
+    int T;
+    cin >> T;
+    for (int _ = 1; _ <= T; ++_) {
+        cout << "Case #" << _ << ": ";
+        work();
+    }
     return 0;
 }
